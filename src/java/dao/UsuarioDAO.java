@@ -27,7 +27,7 @@ public class UsuarioDAO extends DAO<Usuario> {
     public Usuario Validar(Usuario usuario) throws SQLException{
         
         
-        PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM usuarios WHERE login = ? AND senha = ?");
+        PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM usuarios WHERE usuario = ? AND senha = ?");
         pstmt.setString(1, usuario.getLogin());
         pstmt.setString(2, usuario.getSenha());
         ResultSet resultado = pstmt.executeQuery();
@@ -35,7 +35,7 @@ public class UsuarioDAO extends DAO<Usuario> {
         while(resultado.next()){
             user = new Usuario();
             user.setId(resultado.getInt("ID"));
-            user.setLogin(resultado.getString("LOGIN"));
+            user.setLogin(resultado.getString("USUARIO"));
             user.setSenha(resultado.getString("SENHA"));
         }
         
