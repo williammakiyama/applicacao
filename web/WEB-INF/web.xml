@@ -13,13 +13,14 @@
         <load-on-startup>2</load-on-startup>
     </servlet>
     
-     <servlet>
+    <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     
     

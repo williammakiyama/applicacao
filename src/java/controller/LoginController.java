@@ -31,10 +31,10 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         if(request.getParameter("func").equals("sair")){
             request.getSession().invalidate();
-            response.sendRedirect("/E-commerce/Autenticacao/Login.jsp");
+            response.sendRedirect("/applicacao/dashboard.jsp");
         }
-        else
-            response.sendRedirect("/E-commerce/Autenticacao/NaoAutenticado.jsp");
+       // else
+          //  response.sendRedirect("/E-commerce/Autenticacao/NaoAutenticado.jsp");
     }
 
     @Override
