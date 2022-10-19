@@ -12,6 +12,10 @@
         <title>Respeto - Dashboard</title>
     </head>
     <body>
-        <h1>oi</h1>
+        <h1>dashboard</h1>
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="get" action="Login">
+            <a class="dropdown-item" href="/E-commerce/Autenticacao/Login?func=sair" id="btnSair" >Sair</a>
+        </form>
+        
     </body>
 </html>
