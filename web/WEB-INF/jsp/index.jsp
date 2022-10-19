@@ -8,6 +8,18 @@
     </head>
     <body>
         <div class="container mt-5">
+            <%
+                HttpSession sessao = request.getSession();
+                String msg = (String) sessao.getAttribute("msg");
+                if (msg != null) {
+            %>
+            <div class="alert alert-danger alert-dismissible fade show justify-content-center text-center" role="alert">
+                <strong>Erro!</strong> <%= msg%>
+            </div>
+            <% request.removeAttribute("msg");
+                }
+                msg = null;
+            %>
             <div class="row aling-items-center">
                 <div class="col-md-10 mx-auto col-lg-5">
                     <form class="p-4 p-md-5 border rounded-3 bg-light" method="post" action="Login">
@@ -29,7 +41,6 @@
                         </div>
                           <button class="w-100 btn btn-lg btn-dark" type="submit">Entrar</button>
                     </form>
-               
                 </div>
             </div>
         </div>

@@ -18,19 +18,29 @@ public class ConexaoMySQL implements IConexao{
     @Override
     public Connection getConexao(){
         
-        Connection conexao = null;
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexao = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbSistema","root","");
-        
-        }catch(ClassNotFoundException erro1){
-            throw new RuntimeException(erro1);
-        
-        }catch(SQLException erro2){
-            throw new RuntimeException(erro2);
+            Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_sistema","root","root");
+            return conexao;
+                    
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("erro ao conectar"+e.getMessage());
+            return null;
         }
         
-        return conexao;
+//        Connection conexao = null;
+//        try{
+//            Class.forName("com.mysql.jdbc.Driver");
+//            conexao = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/dbSistema","root","root");
+//        
+//        }catch(ClassNotFoundException erro1){
+//            throw new RuntimeException(erro1);
+//        
+//        }catch(SQLException erro2){
+//            throw new RuntimeException(erro2);
+//        }
+//        
+//        return conexao;
     }
 
 }

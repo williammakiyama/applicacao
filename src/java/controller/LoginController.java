@@ -31,10 +31,8 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         if(request.getParameter("func").equals("sair")){
             request.getSession().invalidate();
-            response.sendRedirect("/applicacao/dashboard.jsp");
+            response.sendRedirect("/applicacao/index.html");
         }
-       // else
-          //  response.sendRedirect("/E-commerce/Autenticacao/NaoAutenticado.jsp");
     }
 
     @Override
@@ -49,32 +47,11 @@ public class LoginController extends HttpServlet {
         
         if(loginService.getUsuario() != null){
             
-//            PedidoService pedidoService = new PedidoService();
-//            if(pedidoService.buscarCarrinhoPorCliente(loginService.getUsuario().getId()) == null){
-//                pedidoService.adcionarUmPedido(loginService.getUsuario().getId());
-//            }
             HttpSession sessaoUsuario = request.getSession();
             if(sessaoUsuario != null){
                 
                 sessaoUsuario.setAttribute("usuarioLogado", loginService.getUsuario());
-//                sessaoUsuario.setAttribute("carrinho", pedidoService.buscarCarrinhoPorCliente(loginService.getUsuario().getId()));
-//            }
-//            switch(loginService.validarUsuario(login, senha).getPerfil().toUpperCase()){
-//                case "C":
-//                    ClienteService clienteService = new ClienteService();
-//                    Cliente cliente = new Cliente();
-//                    cliente = clienteService.obterCliente(loginService.getUsuario().getId());
-//                    sessaoUsuario.setAttribute("cliente", cliente);
-//                    response.sendRedirect("../Cliente/Painel.jsp");
-//                    break;
-//                case "V":
-//                    EnderecoService enderecoService = new EnderecoService();
-//                    sessaoUsuario.setAttribute("endereco", enderecoService.obterEnderecoDoVendedor());
-//                    response.sendRedirect("../Vendedor/Painel.jsp");
-//                    break;
-//                default:
-//                    response.sendRedirect("../Erro/ErroPerfil.jsp");
-//                    break;
+                response.sendRedirect("/applicacao/dashboard.jsp");
             }
         }
         else{
@@ -84,7 +61,7 @@ public class LoginController extends HttpServlet {
                 String msg = "Login ou Senha Incorreto!";
                 sessaoUsuario.setAttribute("msg", msg);
             }
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/applicacao/index.html");
         }
     }
     

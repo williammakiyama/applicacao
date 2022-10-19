@@ -25,13 +25,13 @@ public abstract class DAO<T> {
     
     public abstract T obterUm(T item);
     
-    public abstract ArrayList<T> listarTodos();
-    
-    public abstract boolean alterar(T item);
-    
-    public abstract boolean inserir(T item);
-    
-    public abstract boolean desativar(T item);
+//    public abstract ArrayList<T> listarTodos();
+//    
+//    public abstract boolean alterar(T item);
+//    
+//    public abstract boolean inserir(T item);
+//    
+//    public abstract boolean desativar(T item);
 
     public Connection getConexao() {
         return conexao;
