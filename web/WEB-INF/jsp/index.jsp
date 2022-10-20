@@ -18,6 +18,7 @@
             </div>
             <% request.removeAttribute("msg");
                 }
+                sessao.invalidate();
                 msg = null;
             %>
             <div class="row aling-items-center">

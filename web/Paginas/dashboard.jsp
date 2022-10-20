@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>dashboard</h1>
-        <form class="p-4 p-md-5 border rounded-3 bg-light" method="get" action="Login">
-            <a class="dropdown-item" href="/E-commerce/Autenticacao/Login?func=sair" id="btnSair" >Sair</a>
-        </form>
+                                  <button class="w-100 btn btn-lg btn-dark" type="submit" >Sair</button>
+
+        
         
     </body>
 </html>

@@ -12,6 +12,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,9 +20,9 @@ import model.Usuario;
 
 /**
  *
- * @author Afonso
+ * @author William
  */
-//@webFilter("/")
+@WebFilter("/Paginas/*")
 public class UsuarioFilter implements Filter{
 
     @Override
@@ -31,7 +32,9 @@ public class UsuarioFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        
         HttpSession sessaoUsuario = ((HttpServletRequest)request).getSession();
+        
         Usuario usuario = (Usuario) sessaoUsuario.getAttribute("usuarioLogado");
         
         if(usuario != null){

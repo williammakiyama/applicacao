@@ -48,19 +48,18 @@ public class LoginController extends HttpServlet {
         if(loginService.getUsuario() != null){
             
             HttpSession sessaoUsuario = request.getSession();
-            if(sessaoUsuario != null){
-                
+            //if(sessaoUsuario != null){
                 sessaoUsuario.setAttribute("usuarioLogado", loginService.getUsuario());
-                response.sendRedirect("/applicacao/dashboard.jsp");
-            }
+                response.sendRedirect("/applicacao/Paginas/dashboard.jsp");
+            // }
         }
         else{
             HttpSession sessaoUsuario = request.getSession();
-            if(sessaoUsuario != null){
+            //if(sessaoUsuario != null){
                 sessaoUsuario.setMaxInactiveInterval(600);
                 String msg = "Login ou Senha Incorreto!";
                 sessaoUsuario.setAttribute("msg", msg);
-            }
+           // }
             response.sendRedirect("/applicacao/index.html");
         }
     }
