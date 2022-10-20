@@ -42,6 +42,12 @@ public class UsuarioFilter implements Filter{
         }
         else{
 //            chain.doFilter(request, response);
+            //if(sessaoUsuario != null){
+                sessaoUsuario.setMaxInactiveInterval(600);
+                String msg = "Por favor faça Login!";
+                sessaoUsuario.setAttribute("msg", msg);
+           // }
+            
             ((HttpServletResponse)response).sendRedirect("/applicacao/index.html");
         }
     }

@@ -29,10 +29,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("func").equals("sair")){
-            request.getSession().invalidate();
-            response.sendRedirect("/applicacao/index.html");
-        }
+       
     }
 
     @Override
