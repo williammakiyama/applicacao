@@ -1,0 +1,148 @@
+package dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import model.ItemPedido;
+import model.Pedido;
+import model.Produto;
+import util.IConexao;
+
+public class ItemPedidoDAO extends DAO<ItemPedido>{
+
+    public ItemPedidoDAO(IConexao conexao) throws SQLException {
+        super(conexao);
+    }
+
+    @Override
+    public ItemPedido obterUm(ItemPedido item) {
+        ItemPedido itemPedido = null;
+        
+        try {
+            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM itens_pedido WHERE ID = ? AND ATIVO = 1");
+            pstmt.setInt(1, item.getId());
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                itemPedido = new ItemPedido();
+                itemPedido.setId(rs.getInt("ID"));
+                itemPedido.setNome(rs.getString("NOME"));
+                itemPedido.setQuantidade(rs.getInt("QUANTIDADE"));
+                itemPedido.setValor(rs.getDouble("VALOR"));
+                
+                Pedido pedido = new Pedido();
+                pedido.setId(rs.getInt("ID_PEDIDOS"));
+                
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("ID_PRODUTOS"));
+                
+                itemPedido.setPedido(pedido);
+                itemPedido.setProduto(produto);
+            }
+            
+        } catch (SQLException ex) {
+            return itemPedido;
+        }
+        
+        return itemPedido;
+    }
+
+    public ArrayList<ItemPedido> listarTodos() {
+        ItemPedido itemPedido = new ItemPedido();
+        ArrayList<ItemPedido> itensPedido = new ArrayList<>();
+        
+        try {
+            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM itens_pedido WHERE ATIVO = 1");
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                itemPedido = new ItemPedido();
+                itemPedido.setId(rs.getInt("ID"));
+                itemPedido.setNome(rs.getString("NOME"));
+                itemPedido.setQuantidade(rs.getInt("QUANTIDADE"));
+                itemPedido.setValor(rs.getDouble("VALOR"));
+                
+                Pedido pedido = new Pedido();
+                pedido.setId(rs.getInt("ID_PEDIDOS"));
+                
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("ID_PRODUTOS"));
+                
+                itemPedido.setPedido(pedido);
+                itemPedido.setProduto(produto);
+                itensPedido.add(itemPedido);
+            }
+            
+        } catch (SQLException ex) {
+            return itensPedido;
+        }
+        
+        return itensPedido;
+    }
+    
+    public ArrayList<ItemPedido> listarTodosPorPedido(Pedido pedido) {
+        ItemPedido itemPedido = new ItemPedido();
+        ArrayList<ItemPedido> itensPedido = new ArrayList<>();
+        
+        try {
+            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM itens_pedido WHERE ATIVO = 1 AND ID_PEDIDOS = ?");
+            pstmt.setInt(1, pedido.getId());
+            ResultSet rs = pstmt.executeQuery();
+            
+            while(rs.next()){
+                itemPedido = new ItemPedido();
+                itemPedido.setId(rs.getInt("ID"));
+                itemPedido.setNome(rs.getString("NOME"));
+                itemPedido.setQuantidade(rs.getInt("QUANTIDADE"));
+                itemPedido.setValor(rs.getDouble("VALOR"));
+                
+                pedido = new Pedido();
+                pedido.setId(rs.getInt("ID_PEDIDOS"));
+                
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("ID_PRODUTOS"));
+                
+                itemPedido.setPedido(pedido);
+                itemPedido.setProduto(produto);
+                itensPedido.add(itemPedido);
+            }
+            
+        } catch (SQLException ex) {
+            return itensPedido;
+        }
+        
+        return itensPedido;
+    }
+
+    public boolean alterar(ItemPedido item) {
+        PreparedStatement pstmt;
+        try {
+            pstmt = getConexao().prepareStatement("UPDATE itens_pedido SET NOME = ?, QUANTIDADE = ?, VALOR = ? WHERE ID = ?");
+            pstmt.setString(1, item.getNome());
+            pstmt.setInt(2, item.getQuantidade());
+            pstmt.setDouble(3, item.getValor());
+            pstmt.setInt(4, item.getId());
+            pstmt.execute();
+            return true;
+        } catch(Exception ex){
+            return false;
+        }
+    }
+
+    public boolean inserir(ItemPedido item) {
+        PreparedStatement pstmt;
+        try {
+            pstmt = getConexao().prepareStatement("INSERT INTO itens_pedido (NOME,QUANTIDADE,VALOR,ID_PEDIDOS,ID_PRODUTOS) VALUES (?,?,?,?,?)");
+            pstmt.setString(1, item.getNome());
+            pstmt.setInt(2, item.getQuantidade());
+            pstmt.setDouble(3, item.getValor());
+            pstmt.setInt(4, item.getPedido().getId());
+            pstmt.setInt(5, item.getProduto().getId());
+            pstmt.execute();
+            return true;
+        } catch(Exception ex){
+            return false;
+        }
+    }
+}
