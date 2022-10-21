@@ -53,7 +53,7 @@ public class Categoria {
         this.categoria = categoria;
     }
 
-    public boolean isAtivo() {
+    public boolean getAtivo() {
         return ativo;
     }
 

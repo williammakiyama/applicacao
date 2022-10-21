@@ -11,7 +11,6 @@ package model;
  */
 public class Produto {
     private int id;
-    private String descricao;
     private double ultimoValorCompra;
     private double valorVenda;
     private String nome;
@@ -21,9 +20,8 @@ public class Produto {
     private int quantidadeMinimo;
     private int totalProdutos;
 
-    public Produto(int id, String descricao, double ultimoValorCompra, double valorVenda, String nome, Categoria categoria, boolean ativo, int quantidadeEstoque, int quantidadeMinimo, int totalProdutos) {
+    public Produto(int id, double ultimoValorCompra, double valorVenda, String nome, Categoria categoria, boolean ativo, int quantidadeEstoque, int quantidadeMinimo, int totalProdutos) {
         this.id = id;
-        this.descricao = descricao;
         this.ultimoValorCompra = ultimoValorCompra;
         this.valorVenda = valorVenda;
         this.nome = nome;
@@ -34,7 +32,6 @@ public class Produto {
         this.totalProdutos = totalProdutos;
     }
 
-   
     public Produto() {
     }
 
@@ -44,14 +41,6 @@ public class Produto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public double getUltimoValorCompra() {
@@ -86,7 +75,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public boolean isAtivo() {
+    public boolean getAtivo() {
         return ativo;
     }
 

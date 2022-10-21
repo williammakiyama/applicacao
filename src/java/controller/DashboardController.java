@@ -36,9 +36,7 @@ public class DashboardController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            HttpSession sessaoUsuario = ((HttpServletRequest)request).getSession();
-            sessaoUsuario.invalidate();
-            response.sendRedirect("/applicacao/index.html");
+           
 
     }
 

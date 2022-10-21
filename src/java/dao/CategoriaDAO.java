@@ -33,7 +33,6 @@ public class CategoriaDAO extends DAO<Categoria>{
             pstmt.setInt(1, item.getId());
             pstmt.setString(2, item.getDescricao());
             ResultSet rs = pstmt.executeQuery();
-            
             while(rs.next()){
                 categoria = new Categoria();
                 categoria.setId(rs.getInt("ID"));
@@ -42,11 +41,9 @@ public class CategoriaDAO extends DAO<Categoria>{
                 categoria.setCategoria(new Categoria());
                 categoria.getCategoria().setId(rs.getInt("ID_CATEGORIAS"));
             }
-            
         } catch (SQLException ex) {
             return categoria;
         }
-        
         return categoria;
     }
 
@@ -56,7 +53,6 @@ public class CategoriaDAO extends DAO<Categoria>{
         try {
             PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM categorias WHERE ATIVO = 1");
             ResultSet rs = pstmt.executeQuery();
-            
             while(rs.next()){
                 categoria = new Categoria();
                 categoria.setId(rs.getInt("ID"));
@@ -66,11 +62,9 @@ public class CategoriaDAO extends DAO<Categoria>{
                 categoria.getCategoria().setId(rs.getInt("ID_CATEGORIAS"));
                 categorias.add(categoria);
             }
-            
         } catch (SQLException ex) {
             return categorias;
         }
-        
         return categorias;
     }
 
@@ -112,5 +106,4 @@ public class CategoriaDAO extends DAO<Categoria>{
             return false;
         }
     }
-
 }
