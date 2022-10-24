@@ -132,7 +132,7 @@ public class ProdutoService extends Servico {
             ItemPedidoDAO itensDao = new ItemPedidoDAO(getConexao());
             for(ItemPedido item: itensDao.listarTodosPorPedido(pedido)){
                 listaDeItens += "&itemId"+count+"=" + String.format("%04d", count)
-                                +"&itemDescription"+count+"=" + item.getNome()
+                                //+"&itemDescription"+count+"=" + item.getNome()
                                 +"&itemAmount"+count+"=" + String.format("%.2f",item.getValor()).replace(",", ".")
                                 +"&itemQuantity"+count+"=" + item.getQuantidade()
                                 +"&itemWeight"+count+"=1000";

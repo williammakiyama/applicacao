@@ -11,10 +11,10 @@ package model;
  */
 public class Produto {
     private int id;
-    private double ultimoValorCompra;
-    private double valorVenda;
     private String nome;
     private Categoria categoria;
+    private double valorVenda;
+    private double ultimoValorCompra;
     private boolean ativo;
     private int quantidadeEstoque;
     private int quantidadeMinimo;
@@ -103,8 +103,7 @@ public class Produto {
         return totalProdutos;
     }
 
-    public void setTotalProdutos(int totalProdutos) {
-        this.totalProdutos = totalProdutos;
+    public void setTotalProdutos(int quantidade) {
+        this.totalProdutos = totalProdutos + quantidade;
     }
-    
 }

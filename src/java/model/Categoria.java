@@ -12,14 +12,10 @@ package model;
 public class Categoria {
     private int id;
     private String descricao;
-    private boolean ativo;
-    private Categoria categoria;
 
-    public Categoria(int id, String descricao, boolean ativo, Categoria categoria) {
+    public Categoria(int id, String descricao) {
         this.id = id;
         this.descricao = descricao;
-        this.ativo = ativo;
-        this.categoria = categoria;
     }
     
     public Categoria(int id) {
@@ -44,21 +40,4 @@ public class Categoria {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-    public boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-    
 }

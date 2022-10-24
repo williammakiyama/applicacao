@@ -10,10 +10,10 @@ package enums;
  */
 public enum StatusPagamentoEnum {
     
-    CARTAODEBITO,
-    CARTAOCREDITO,
-    DINHEIRO,
-    PIX,
+    PAGOCARTAODEBITO,
+    PAGOCARTAOCREDITO,
+    PAGODINHEIRO,
+    PAGOPIX,
     FIADO,
     
 }
