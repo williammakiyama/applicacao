@@ -29,17 +29,13 @@ public class CategoriaDAO extends DAO<Categoria>{
         Categoria categoria = null;
         
         try {
-            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM categorias WHERE (ID = ? OR DESCRICAO = ?) AND ATIVO = 1");
+            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM categorias WHERE ID = ?");
             pstmt.setInt(1, item.getId());
-            pstmt.setString(2, item.getDescricao());
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
                 categoria = new Categoria();
                 categoria.setId(rs.getInt("ID"));
                 categoria.setDescricao(rs.getString("DESCRICAO"));
-                categoria.setAtivo(rs.getBoolean("ATIVO"));
-                categoria.setCategoria(new Categoria());
-                categoria.getCategoria().setId(rs.getInt("ID_CATEGORIAS"));
             }
         } catch (SQLException ex) {
             return categoria;
@@ -47,19 +43,17 @@ public class CategoriaDAO extends DAO<Categoria>{
         return categoria;
     }
 
+    @Override
     public ArrayList<Categoria> listarTodos() {
         Categoria categoria = null;
         ArrayList<Categoria> categorias = new ArrayList<>();
         try {
-            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM categorias WHERE ATIVO = 1");
+            PreparedStatement pstmt = getConexao().prepareStatement("SELECT * FROM categorias");
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
                 categoria = new Categoria();
                 categoria.setId(rs.getInt("ID"));
                 categoria.setDescricao(rs.getString("DESCRICAO"));
-                categoria.setAtivo(rs.getBoolean("ATIVO"));
-                categoria.setCategoria(new Categoria());
-                categoria.getCategoria().setId(rs.getInt("ID_CATEGORIAS"));
                 categorias.add(categoria);
             }
         } catch (SQLException ex) {
@@ -68,13 +62,13 @@ public class CategoriaDAO extends DAO<Categoria>{
         return categorias;
     }
 
+    @Override
     public boolean alterar(Categoria item) {
         PreparedStatement pstmt;
         try {
-            pstmt = getConexao().prepareStatement("UPDATE categorias SET DESCRICAO = ?, ID_CATEGORIAS = ? WHERE ID = ?");
+            pstmt = getConexao().prepareStatement("UPDATE categorias SET DESCRICAO = ? WHERE ID = ?");
             pstmt.setString(1, item.getDescricao());
-            pstmt.setInt(2, item.getCategoria().getId());
-            pstmt.setInt(3, item.getId());
+            pstmt.setInt(2, item.getId());
             pstmt.execute();
             return true;
         } catch(Exception ex){
@@ -82,12 +76,12 @@ public class CategoriaDAO extends DAO<Categoria>{
         }
     }
 
+    @Override
     public boolean inserir(Categoria item) {
         PreparedStatement pstmt;
         try {
-            pstmt = getConexao().prepareStatement("INSERT INTO categorias(DESCRICAO,ID_CATEGORIAS) VALUES (?,?)");
+            pstmt = getConexao().prepareStatement("INSERT INTO categorias(DESCRICAO) VALUES (?)");
             pstmt.setString(1, item.getDescricao());
-            pstmt.setInt(2, item.getCategoria().getId());
             pstmt.execute();
             return true;
         } catch(Exception ex){
@@ -95,15 +89,8 @@ public class CategoriaDAO extends DAO<Categoria>{
         }
     }
 
+    @Override
     public boolean desativar(Categoria item) {
-        PreparedStatement pstmt;
-        try {
-            pstmt = getConexao().prepareStatement("UPDATE categorias SET ATIVO = 0 WHERE ID = ?");
-            pstmt.setInt(1, item.getId());
-            pstmt.execute();
-            return true;
-        } catch(Exception ex){
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
