@@ -25,22 +25,18 @@ public class PedidosController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        if(request.getParameter("func").equals("sair")){
-            request.getSession().invalidate();
-            response.sendRedirect("/applicacao/index.html");
-        }
+        HttpSession sessao = request.getSession();
+        ArrayList<Pedido> pedidos = new ArrayList();
+        PedidoService pedidoService = new PedidoService();
+        pedidos = pedidoService.buscarTodos();
+        sessao.setAttribute("pedidos", pedidos);
+        response.sendRedirect("/applicacao/Paginas/pedidos.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession sessao = request.getSession();
-        ArrayList<Pedido> pedidos = new ArrayList();
-        PedidoService pedidoService = null;
-        pedidos = pedidoService.buscarTodos();
-        sessao.setAttribute("pedidos", pedidos);
-        response.sendRedirect("/applicacao/Paginas/pedidos.jsp");
         
     }
 

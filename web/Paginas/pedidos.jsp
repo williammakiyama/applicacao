@@ -4,6 +4,8 @@
     Author     : William
 --%>
 
+<%@page import="model.Pedido"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br>
@@ -47,6 +49,16 @@
         <div class="row mt-5">
         
         </div>
+        <%
+            HttpSession sessao = request.getSession();
+            ArrayList  pedidosRecebidos = (ArrayList) sessao.getAttribute("pedidos");
+            
+            for(int i = 0;  i < pedidosRecebidos.size();  i++ ){
+
+            }  
+            
+            
+        %>
 
         <div class="container p-md-5 border rounded-3 bg-light mt-5">
             <table class="table table-striped  table-hover table-bordered">
@@ -58,6 +70,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% 
+                        
+                    %>
                     <tr>
                         <th scope="row">1</th>
                         <td>01/03</td>

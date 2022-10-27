@@ -58,10 +58,10 @@ public class PedidoDAO extends DAO<Pedido>{
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
                 Pedido pedido = new Pedido();
-                pedido.setId(rs.getInt("ID"));
-                pedido.setDataCriacao(rs.getDate("DATA_CRIACAO"));
-                pedido.setDataPagamento(rs.getDate("DATA_PAGAMENTO"));
-                pedido.setPagamento(StatusPagamentoEnum.valueOf("STATUS_PAGAMENTO"));
+                pedido.setId(rs.getInt("IDPEDIDOS"));
+                pedido.setDataCriacao(rs.getDate("DATACRIACAO"));
+                pedido.setDataPagamento(rs.getDate("DATAPAGAMENTO"));
+                pedido.setPagamento(StatusPagamentoEnum.valueOf(rs.getString("PAGAMENTO")));
                 pedidos.add(pedido);
             }
         } catch (SQLException ex) {
